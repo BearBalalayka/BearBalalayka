@@ -53,6 +53,7 @@ test('returns redirect only after confirmed Telegram message', async (t) => {
     assert.match(body.text, /Только если сразу получу прибыль/);
     assert.match(body.text, /EOS, BNB, VAULTA/);
     assert.match(body.text, /Вы гражданин РФ\?/);
+    assert.match(body.text, /От кого пришёл: partner_15/);
     return Response.json({ ok: true, result: { message_id: 1 } });
   };
   process.env.BOT_TOKEN = 'fake-token';
@@ -67,7 +68,7 @@ test('returns redirect only after confirmed Telegram message', async (t) => {
     if (originalRedirect === undefined) delete process.env.REDIRECT_URL;
     else process.env.REDIRECT_URL = originalRedirect;
   });
-  const response = await handler.fetch(request({ answers: validAnswers, username: '@tester' }));
+  const response = await handler.fetch(request({ answers: validAnswers, username: '@tester', referralCode: 'partner_15' }));
   assert.equal(response.status, 200);
   assert.deepEqual(await response.json(), { success: true, redirectUrl: 'https://t.me/+ExampleGroupLink' });
 });

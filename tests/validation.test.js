@@ -66,3 +66,18 @@ test('требует ответ на новый вопрос 6', () => {
   assert.equal(result.valid, false);
   assert.ok(result.errors.q6);
 });
+
+
+test('сохраняет идентификатор партнёра из ссылки', () => {
+  const result = validateSubmission({ answers: validAnswers, username: '@tester', referralCode: 'partner_15' });
+  assert.equal(result.valid, true);
+  assert.equal(result.referralCode, 'partner_15');
+});
+
+test('пустая или некорректная метка источника не ломает анкету', () => {
+  for (const referralCode of ['', '<script>', 'very-long-partner-name-that-exceeds-the-forty-eight-character-limit']) {
+    const result = validateSubmission({ answers: validAnswers, username: '@tester', referralCode });
+    assert.equal(result.valid, true);
+    assert.equal(result.referralCode, '');
+  }
+});

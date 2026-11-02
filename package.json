@@ -1,5 +1,5 @@
 {
-  "name": "telegram-survey-six-complete",
+  "name": "telegram-survey-ref-tracking",
   "version": "1.0.0",
   "private": true,
   "description": "Анкета: локальный npm run dev и деплой через GitHub на Vercel",

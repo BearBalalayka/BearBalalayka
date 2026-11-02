@@ -11,6 +11,25 @@ const progressFill = document.querySelector('#progressFill');
 let questions = [];
 let isSending = false;
 
+// Персональные ссылки вида https://example.com/?ref=ivan
+// Метка сохраняется в рамках вкладки до отправки анкеты.
+const referralPattern = /^[a-zA-Z0-9_-]{1,48}$/;
+const referralStorageKey = 'survey_referral_code';
+
+function getReferralCode() {
+  const urlValue = new URLSearchParams(window.location.search).get('ref');
+  const fromUrl = urlValue && referralPattern.test(urlValue) ? urlValue : '';
+  try {
+    if (fromUrl) window.sessionStorage.setItem(referralStorageKey, fromUrl);
+    const stored = window.sessionStorage.getItem(referralStorageKey) || '';
+    return fromUrl || (referralPattern.test(stored) ? stored : '');
+  } catch {
+    // При заблокированном sessionStorage метка из ссылки всё равно работает.
+    return fromUrl || '';
+  }
+}
+const referralCode = getReferralCode();
+
 const usernameRegex = /^@?[a-zA-Z][a-zA-Z0-9_]{4,31}$/;
 
 function createQuestion(question, index) {
@@ -114,7 +133,7 @@ function validateForm() {
     firstInvalid.focus();
     return null;
   }
-  return { answers, username };
+  return { answers, username, referralCode };
 }
 
 questionsContainer.addEventListener('change', (event) => {
