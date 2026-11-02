@@ -1,0 +1,14 @@
+{
+  "name": "telegram-survey-six-complete",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Анкета: локальный npm run dev и деплой через GitHub на Vercel",
+  "scripts": {
+    "dev": "node --watch local-server.mjs",
+    "start": "node local-server.mjs",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0d1320" />
+    <meta name="description" content="Короткая анкета с шестью вопросами и отправкой ответов в Telegram." />
+    <title>Короткая анкета — 6 вопросов</title>
+    <link rel="stylesheet" href="/style.css" />
+    <script src="/script.js" defer></script>
+  </head>
+  <body>
+    <main class="page">
+      <div class="layout">
+        <aside class="intro">
+          <div class="brand"><span class="brand-icon">✦</span> Анкета<span class="brand-dot">.</span></div>
+          <div class="intro-content">
+            <div class="eyebrow"><span class="live-dot"></span> ОНЛАЙН-ОПРОС</div>
+            <h1>Всего пара минут <span>о вас.</span></h1>
+            <p>Ответьте на шесть простых вопросов и оставьте ваш Telegram username. Это быстро и без регистрации.</p>
+            <div class="intro-features">
+              <div class="intro-feature"><span class="feature-icon">✓</span> Всего 6 вопросов</div>
+              <div class="intro-feature"><span class="feature-icon">✓</span> Удобный выбор вариантов</div>
+              <div class="intro-feature"><span class="feature-icon">✓</span> Без лишних данных</div>
+            </div>
+          </div>
+          <div class="intro-footer">Ваши ответы будут отправлены организатору анкеты в Telegram.</div>
+        </aside>
+        <section class="survey-panel" aria-label="Анкета">
+          <div class="survey-head">
+            <div class="topline"><span class="step-chip">ОПРОС</span><span class="time-label">◷ 2 минуты</span></div>
+            <h2>Давайте познакомимся</h2>
+            <p>Ответьте на каждый вопрос. В пятом вопросе можно выбрать несколько проектов.</p>
+          </div>
+          <div class="progress-wrap">
+            <div class="progress-label"><span>Ваш прогресс</span><strong id="progressText">0 из 6</strong></div>
+            <div class="progress-track" role="progressbar" id="progressBar" aria-valuemin="0" aria-valuemax="6" aria-valuenow="0" aria-label="Заполненные вопросы"><div class="progress-fill" id="progressFill"></div></div>
+          </div>
+          <form id="surveyForm" novalidate>
+            <div id="questions" class="questions" aria-live="off"><div class="loading">Загружаем вопросы…</div></div>
+            <div class="username-wrap" id="usernameWrap">
+              <div class="username-title"><span class="question-number">07</span><label for="username">Ваш Telegram username <span class="required">*</span></label></div>
+              <p class="field-hint">Укажите имя пользователя, чтобы мы могли с вами связаться.</p>
+              <div class="input-shell"><span class="at-icon" aria-hidden="true">@</span><input id="username" name="username" type="text" placeholder="username" maxlength="33" autocomplete="off" autocapitalize="none" spellcheck="false" aria-describedby="usernameError" /></div>
+              <p class="error-text" id="usernameError" aria-live="polite"></p>
+            </div>
+            <p class="privacy-copy">Нажимая «Отправить анкету», вы соглашаетесь передать ответы и указанный username организатору опроса через Telegram.</p>
+            <button id="submitButton" class="submit-btn" type="submit" disabled><span id="submitText">Отправить анкету</span><span class="arrow" aria-hidden="true">→</span></button>
+            <p id="formStatus" class="form-status" role="status" aria-live="polite"></p>
+          </form>
+          <div class="panel-footer"><span class="lock-icon">♢</span> Заполните все поля, чтобы продолжить</div>
+        </section>
+      </div>
+    </main>
+  </body>
+</html>
