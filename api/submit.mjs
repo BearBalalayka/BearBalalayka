@@ -83,6 +83,7 @@ export default {
       ]),
       `👤 Telegram: ${result.username}`,
       `🕒 Дата: ${new Date().toLocaleString("ru-RU", { timeZone: "Europe/Kyiv" })}`,
+      `🔗 От кого пришёл: ${result.referralCode || "без метки"}`,
     ].join("\n");
 
     try {
